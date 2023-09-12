@@ -9,11 +9,11 @@ const router = express.Router();
 // All routes
 
 
-router.post('/adminCreate', createAdmin);
+// router.post('/adminCreate', createAdmin);
 router.get('/get-SingleAdmin/:id', authenticateToken, getSingleAdmin);
-router.put('/Update-SingleAdmin/:id', UpdateSingleAdmin);
+router.put('/Update-SingleAdmin/:id', authenticateToken, UpdateSingleAdmin);
 router.post('/adminLogin', LoginAdminCtrl);
-router.get('/admin-logout', LogoutAdmin);
+router.get('/admin-logout', authenticateToken, LogoutAdmin);
 router.put('/Update-password', updatePassword);
 router.post('/reset-password', forgotpasswordtoken);
 

@@ -11,9 +11,9 @@ var blogSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    category: {
-        type: String,
-        required: true,
+    categoryType: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category'
     },
     numViews: {
         type: Number,
@@ -24,21 +24,24 @@ var blogSchema = new mongoose.Schema({
         type: "String",
         default: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fst2.depositphotos.com%2F1006899%2F8421%2Fi%2F950%2Fdepositphotos_84219350-stock-photo-word-blog-suspended-by-ropes.jpg&tbnid=4iaT_L1MK2jm_M&vet=12ahUKEwir__vHqZ2BAxWiz6ACHY3MDFoQMygUegUIARCfAQ..i&imgrefurl=https%3A%2F%2Fdepositphotos.com%2F84219350%2Fstock-photo-word-blog-suspended-by-ropes.html&docid=0pog_-17aKt2tM&w=1024&h=640&q=blog%20images&ved=2ahUKEwir__vHqZ2BAxWiz6ACHY3MDFoQMygUegUIARCfAQ"
     },
-    author: {
-        type: "String",
-        default: "Subadmin"
-    },
+    author: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Admin' // Reference the Admin model
+    }, {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Subadmin' // Reference the SubAdmin model
+    }],
 
 },
-    // {
-    //     toJSON: {
-    //         virtuals: true,
-    //     },
-    //     toObject: {
-    //         virtuals: true,
-    //         timestamps: true,
-    //     }
-    // },
+    {
+        toJSON: {
+            virtuals: true,
+        },
+        toObject: {
+            virtuals: true,
+            timestamps: true,
+        }
+    },
 
 );
 

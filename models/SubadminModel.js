@@ -1,6 +1,5 @@
 const mongoose = require('mongoose'); // Erase if already required
 const bcrypt = require('bcrypt');
-const { ObjectId, Timestamp } = require('mongodb');
 const crypto = require("crypto")
 // Declare the Schema of the Mongo model
 var SubadminSchema = new mongoose.Schema({
@@ -44,8 +43,8 @@ var SubadminSchema = new mongoose.Schema({
     },
     passwordChangeAt: Date,
     passwordResetToken: String,
-    passwordResetExpires: Date
-}, {
+    passwordResetExpires: Date,
+
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Admin', // Reference the Admin model
@@ -58,7 +57,7 @@ var SubadminSchema = new mongoose.Schema({
     }
 
 );
-SubadminSchema.set('strict', false);
+// SubadminSchema.set('strict', false);
 SubadminSchema.pre('save', async function (next) {
     if (!this.isModified("password")) {
         next()

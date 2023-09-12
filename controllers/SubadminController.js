@@ -126,7 +126,7 @@ const LogoutUser = asyncHandler(async (req, res) => {
 
 const getAllUsers = asyncHandler(async (req, res) => {
     try {
-        const data = await Subadmin.find();
+        const data = await Subadmin.find().populate('createdBy');
         const length = data.length;
         res.status(200).json({
             message: "All Exists Subadmin!",

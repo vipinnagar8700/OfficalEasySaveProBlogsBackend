@@ -6,7 +6,14 @@ var CategorySchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-    }
+    },
+    createdBy: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Admin' // Reference the Admin model
+    }, {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Subadmin' // Reference the SubAdmin model
+    }]
 },
     { timestamps: true }
 

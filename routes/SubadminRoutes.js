@@ -12,7 +12,7 @@ const router = express.Router();
 router.post('/register', createUser);
 router.post('/login', LoginUserCtrl);
 router.get('/RefreshToken', handleRefreshToken);
-router.get('/all-users',  getAllUsers);
+router.get('/all-users',authenticateToken,  getAllUsers);
 router.get('/get-SingleUsers/:id', authenticateToken, getSingleUser);
 router.delete('/delete-SingleUsers/:id', authenticateToken, deleteSingleUser);
 router.put('/Update-SingleUsers/:id', authenticateToken, UpdateSingleUser);
@@ -21,8 +21,8 @@ router.put('/Blocked-SingleUsers/:id', authenticateToken, BlockedUser);
 router.put('/Unblocked-SingleUsers/:id', authenticateToken, unBlockedUser);
 router.get('/all-blocked-users', authenticateToken, GetAllBlockedUser);
 router.get('/all-unblocked-users', authenticateToken, GetAllunBlockedUser);
-router.get('/user-logout', LogoutUser);
-router.put('/Update-password', authenticateToken, updatePassword);
+router.get('/user-logout',authenticateToken, LogoutUser);
+router.put('/Update-password', updatePassword);
 router.post('/reset-password', forgotpasswordtoken);
 
 

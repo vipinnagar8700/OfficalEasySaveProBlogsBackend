@@ -9,16 +9,16 @@ const router = express.Router();
 // All routes
 
 
-router.post('/Add-Blog', createBlog);
-router.get('/all-blogs', getAllBlogs);
-router.get('/get-SingleBlog/:id', getSingleBlog);
-router.delete('/delete-SingleBlog/:id', deleteSingleBlog);
-router.put('/Update-SingleBlog/:id', UpdateSingleBlog);
-router.post('/Add-Blog-Category', CreateCategory);
-router.get('/all-blogsCategory', getAllBlogsCategory);
-router.get('/get-SingleBlogCategory/:id', getSingleBlogCategory);
-router.delete('/delete-SingleBlogCategory/:id', deleteSingleBlogCategory);
-router.put('/Update-SingleBlogCategory/:id', UpdateSingleBlogCategory);
+router.post('/Add-Blog',authenticateToken, createBlog);
+router.get('/all-blogs',authenticateToken, getAllBlogs);
+router.get('/get-SingleBlog/:id',authenticateToken, getSingleBlog);
+router.delete('/delete-SingleBlog/:id',authenticateToken, deleteSingleBlog);
+router.put('/Update-SingleBlog/:id',authenticateToken, UpdateSingleBlog);
+router.post('/Add-Blog-Category',authenticateToken, CreateCategory);
+router.get('/all-blogsCategory',authenticateToken, getAllBlogsCategory);
+router.get('/get-SingleBlogCategory/:id',authenticateToken, getSingleBlogCategory);
+router.delete('/delete-SingleBlogCategory/:id',authenticateToken, deleteSingleBlogCategory);
+router.put('/Update-SingleBlogCategory/:id',authenticateToken, UpdateSingleBlogCategory);
 
 // router.put('/likes',  likeBlog);
 // router.put('/dislikes',  DislikeBlog);
