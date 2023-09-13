@@ -144,7 +144,7 @@ const getSingleUser = asyncHandler(async (req, res) => {
     try {
         const data = await Subadmin.findById(id).populate('createdBy');
         if (!data) {
-            res.status(200).json({
+            res.status(404).json({
                 message: "Subadmin was not found !",
             });
         } else {

@@ -13,6 +13,8 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 const adminRoute = require('../routes/AdminRoutes')
 const SubadminRoute = require('../routes/SubadminRoutes')
+const GeoRoute = require('../routes/GeoRoutes')
+const UserRoute = require('../routes/UserRoutes')
 app.use(cookieParser())
 const BlogRoute = require('../routes/BlogRoutes')
 const dbConnect = require('../config/dbConnected');
@@ -24,9 +26,9 @@ app.get('/', (req, res) => {
 
 app.use('/api/admin', adminRoute)
 app.use('/api/subadmin', SubadminRoute)
-
+app.use('/api/geo', GeoRoute)
 app.use('/api/blog', BlogRoute)
-
+app.use('/api/user', UserRoute)
 
 
 

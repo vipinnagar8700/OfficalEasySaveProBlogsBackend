@@ -63,6 +63,16 @@ const createBlog = asyncHandler(async (req, res) => {
 // Function to check if the author is an Admin or Subadmin by their author
 async function getAuthorType(author) {
     try {
+        // $varIterate
+        // cache
+        // if(cache.geoIterate)
+        // { if($varIterate>geoDataArray){$varIterate = -1} $varIterate ++  }
+        // else $varIterate=0
+        // 1. all four site
+        // 2. store bove data in array
+        // 3. geoData[$varIterate]
+        // 4. request -> geoData[$varIterate]
+        // 5. Pass our API
         const admin = await Admin.findById(author);
         const subadmin = await Subadmin.findById(author);
 
