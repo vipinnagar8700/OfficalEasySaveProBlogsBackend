@@ -1,37 +1,38 @@
 const mongoose = require('mongoose'); // Erase if already required
 
 // Declare the Schema of the Mongo model
-var blogSchema = new mongoose.Schema({
-    title: {
+var adsSchema = new mongoose.Schema({
+    AdsName: {
+        type: String,
+        required: true,
+        unique: true,
+        index: true,
+    },
+    AdsLocation: {
+        type: String,
+        required: true,
+    },
+    AdsImage: {
+        type: String,
+        required: true,
+    },
+    Status: {
+        type: String,
+        required: true,
+        default: "active",
+    },
+    AdsUrl: {
         type: String,
         required: true,
         unique: true,
     },
-    description: {
-        type: String,
-        required: true,
-    },
-    categoryType: {
+    createdBy: [ {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Category'
-    },
-    numViews: {
-        type: Number,
-        default: 0,
-    },
-
-    image: {
-        type: "String",
-        required: "true",
-    },
-    author: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Admin' // Reference the Admin model
+        ref: 'Admin' // Reference the SubAdmin model
     }, {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Subadmin' // Reference the SubAdmin model
     }],
-
 },
     {
         toJSON: {
@@ -41,9 +42,7 @@ var blogSchema = new mongoose.Schema({
             virtuals: true,
             timestamps: true,
         }
-    },
-
-);
+    }, { timestamps: true });
 
 //Export the model
-module.exports = mongoose.model('Blog', blogSchema);
+module.exports = mongoose.model('Ads', adsSchema);

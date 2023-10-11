@@ -1,9 +1,19 @@
 const Geo = require('../models/GeoModal');
+const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { validateMongoDbId } = require('../utils/validationmongodb');
 const NodeCache = require("node-cache");
 const siteUrlCache = new NodeCache({ stdTTL: 60 * 60 });
 const User = require('../models/UserModal')
+const session = require('express-session');
+
+const app = express();
+app.use(session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true,
+}));
+
 
 const CreateGeo = (asyncHandler(async (req, res) => {
     const { siteName, siteUrl, apiKey, apiUrl } = req.body;
@@ -119,33 +129,35 @@ const UpdateSingleGeo = asyncHandler(async (req, res) => {
     }
 });
 
+function generateUserIdentifier() {
+    return crypto.randomBytes(16).toString('hex');
+}
+
+
+let counter = 0
 const getAllSiteUrl = asyncHandler(async (req, res) => {
-    const { siteUrl } = req.params; // Access the siteUrl parameter correctly from req.params
     try {
+        // Initialize the counter from the session or set it to 0 if not exists
+        const userIdentifier = req.ip; // Use req.connection.remoteAddress for more precise IP
+
+        const { siteUrl } = req.params;
         const data = await Geo.find(siteUrl);
         console.log(data);
 
-        // Initialize an array to store siteUrlArrays for each user
-        // Initialize an array to store objects with custom keys
-        const customResponseArray = [];
 
-        for (let i = 0; i < data.length; i++) {
-            // Extract the siteUrl property from each object
-            const siteUrl = data[i].siteUrl;
-
-            // Create an object with custom keys
-            const customObject = {
-                [i]: siteUrl,
-            };
-
-            // Push the custom object into the customResponseArray
-            customResponseArray.push(customObject);
+        const siteUrls = data.map(site => site.siteUrl);
+        console.log(siteUrls);
+        if (siteUrls.length === 0) {
+            res.status(404).send('No site URLs available');
+            return;
         }
+        const nextSiteUrl = siteUrls[counter];
 
-        res.status(200).json({
-            message: "All Site Url"
-            , customResponseArray
-        });
+        // Increment the counter and wrap around if necessary
+        counter = (counter + 1) % siteUrls.length;
+
+        res.send('Site URL: ' + nextSiteUrl);
+
     } catch (error) {
         // Handle any errors here
         console.error(error);
@@ -154,8 +166,8 @@ const getAllSiteUrl = asyncHandler(async (req, res) => {
             error: error.message,
         });
     }
-
 });
+
 
 
 

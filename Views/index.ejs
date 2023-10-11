@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasySave Pro</title>
+
+</head>
+
+<body
+    style="display: flex; flex-direction: column; height: 100vh; justify-content: center; align-items: center; background-image: url('https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=4000&q=80'); background-position: center; background-size: cover; font-family: 'Poppins', sans-serif; font-weight: 200; color: #fff;">
+
+    <div style="border: 1px solid rgba(255, 255, 255, 0.18);
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 0.4rem;
+    box-shadow: 0 8px 32px 0 rgba(96, 96, 99, 0.1);
+    min-width: 260px">
+        <h1 style=" margin-bottom: 3rem;">Welcome to Easy Save Pro</h1>
+        <form action="/login" method="POST" id="login-form">
+            <div class="login-input-container" style=" margin-top: 2rem;">
+                <input style="height: 40px;
+                background-color: transparent;
+                border: none;
+                border-bottom: 1px solid #fff;
+                font-size: 16px;
+                width: 100%;
+                color: #fff;" type="email" placeholder="Enter valid Email" maxlength="50" name="email" required />
+
+            </div>
+            <div class="login-input-container">
+                <input class="input-content" style="height: 40px;
+                background-color: transparent;
+                border: none;
+                margin-top: 10px;
+                border-bottom: 1px solid #fff;
+                font-size: 16px;
+                width: 100%;
+                color: #fff;" type="password" name="password" placeholder="Enter valid password" maxlength="50"
+                    required />
+
+            </div>
+
+            <button type="submit" style="background-color: #b3c4dd;
+            margin-top: 2rem;
+            padding: 0.7rem;
+            border-radius: 0.4rem;
+            border: 2px solid white;
+            color:white;
+            ">Log In</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("login-form").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            // Get the values of email and password inputs
+            const email = document.querySelector('input[name="email"]').value;
+            const password = document.querySelector('input[name="password"]').value;
+
+            // Construct the request to the API
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            const raw = JSON.stringify({
+                "email": email,
+                "password": password
+            });
+
+            const requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+            console.log('Before fetch');
+            // Make the API request
+            fetch("https://ads-api.easysavepro.com/api/admin/adminLogin", requestOptions)
+                .then(response => {
+                    console.log('API response:', response);
+                    return response.json();
+                })
+                .then(result => {
+                    console.log('API result:', result);
+                    alert(result.message)
+                    // Assuming the API response contains a redirectUrl
+                    // const redirectUrl = "https://www.jeevaheal.com";
+                    // console.log('Redirecting to:', redirectUrl);
+                    // // Perform the client-side redirect
+                    // window.location.href = redirectUrl;
+                })
+                .catch(error => {
+                    console.error('API error:', error);
+                    alert("Invalid Credentials!"); // Display an alert for invalid credentials
+                });
+
+        });
+    </script>
+</body>
+
+</html>

@@ -26,12 +26,14 @@ var AdminSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    image: {
+        type: String,
+        default: null,
+    },
     role: {
         type: String,
         default: "Admin",
     },
-   
-
     address: {
         type: String,
         required: true,
@@ -50,6 +52,7 @@ var AdminSchema = new mongoose.Schema({
     { timestamps: true }
 
 );
+
 
 AdminSchema.pre('save', async function (next) {
     if (!this.isModified("password")) {

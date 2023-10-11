@@ -8,7 +8,16 @@ const sendMail = require('./EmailController');
 require('dotenv/config')
 
 
+const Minio = require('minio')
+const path = require('path')
 
+const minioClient = new Minio.Client({
+    endPoint: 's3.easysavepro.com', // Replace with your Minio server's endpoint
+    port: 443, // Replace with the port number your Minio server uses
+    useSSL: true, // Set to true if your Minio server uses SSL
+    accessKey: 'i0y1sNJWgJ1meU7Cy8BH', // Replace with your Minio server access key
+    secretKey: 'a022z4bMwafzh98bOW8SK9h46LSuiQdntlSPgATq' // Replace with your Minio server secret key
+});
 
 const createAdmin = asyncHandler(async (req, res) => {
     const email = req.body.email;
@@ -54,8 +63,10 @@ const LoginAdminCtrl = asyncHandler(async (req, res) => {
                 email: findUser?.email,
                 mobile: findUser?.mobile,
                 address: findUser?.address,
+                image:findUser?.image,
                 token: token,
-            }
+            },
+            status:"success"
 
         });
 
@@ -186,37 +197,77 @@ const getSingleAdmin = asyncHandler(async (req, res) => {
 
 const UpdateSingleAdmin = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    validateMongoDbId(id)
-    try {
-        const data = await Admin.findByIdAndUpdate(
-            id,
-            {
-                firstname: req?.body?.firstname,
-                lastname: req?.body?.lastname,
-                email: req?.body?.email,
-                mobile: req?.body?.mobile,
-                address: req?.body?.address,
-            },
-            { new: true }
-        );
+    validateMongoDbId(id);
 
-        if (data === null) {
-            // If data is null, that means the user was not found in the database.
-            res.status(200).json({
+    try {
+        const { firstname, lastname, email, mobile, address } = req.body;
+
+        // Check if the admin with the given ID exists
+        const existingAdmin = await Admin.findById(id);
+
+        if (!existingAdmin) {
+            return res.status(404).json({
                 message: "Admin was not found!",
-            });
-        } else {
-            // If data is not null, the user was found and updated successfully.
-            res.status(200).json({
-                message: "Admin Data successfully Updated!",
-                data,
+                status: "false"
             });
         }
+
+        // Check if a new image file was uploaded
+        if (req.file) {
+            const imageBuffer = req.file.buffer;
+            const bucketName = 'ads-api-easysavepro'; // Replace with your bucket name
+
+            // Set the content type based on the uploaded file's type
+            const contentType = req.file.mimetype;
+
+            // Generate a new unique image key or filename
+            const newImageKey = `image_${Date.now()}.jpg`; // Customize the key as needed
+
+            // Check if the existing image exists in MinIO
+            const existingImageExists = await minioClient
+                .getObject(bucketName, existingAdmin.image)
+                .then(() => true)
+                .catch(() => false);
+
+            if (existingImageExists) {
+                // If the existing image exists in MinIO, delete it
+                await minioClient.removeObject(bucketName, existingAdmin.image);
+            }
+
+            // Upload the new image to MinIO and set the content type
+            await minioClient.putObject(bucketName, newImageKey, imageBuffer, {
+                'Content-Type': contentType,
+            });
+
+            // Update the image field in the admin data with the new image key
+            existingAdmin.image = newImageKey;
+        }
+
+        // Update other admin data
+        existingAdmin.firstname = firstname || existingAdmin.firstname;
+        existingAdmin.lastname = lastname || existingAdmin.lastname;
+        existingAdmin.email = email || existingAdmin.email;
+        existingAdmin.mobile = mobile || existingAdmin.mobile;
+        existingAdmin.address = address || existingAdmin.address;
+
+        // Save the updated admin data
+        await existingAdmin.save();
+
+        res.status(200).json({
+            message: "Admin Data and Image successfully updated!",
+            data: existingAdmin, // Return the updated admin data
+            status: "success"
+        });
     } catch (error) {
         // Handle any errors that occurred during the update process.
-        throw new Error(error);
+        console.error('Error updating admin:', error);
+        res.status(500).json({
+            message: 'Error updating admin.',
+            status: "false"
+        });
     }
 });
+
 
 
 

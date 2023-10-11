@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Form</title>
+</head>
+<body>
+    <h1>Upload an Ad</h1>
+    <form id="uploadForm">
+        <label for="AdsName">Ads Name:</label>
+        <input type="text" id="AdsName" name="AdsName" required><br><br>
+
+        <label for="AdsLocation">Ads Location:</label>
+        <input type="text" id="AdsLocation" name="AdsLocation" required><br><br>
+
+        <label for="AdsUrl">Ads URL:</label>
+        <input type="text" id="AdsUrl" name="AdsUrl" required><br><br>
+
+        <label for="image">Select an image:</label>
+        <input type="file" id="image" name="image" accept="image/*" required><br><br>
+
+        <label for="createdBy">Created By:</label>
+        <input type="text" id="createdBy" name="createdBy" required><br><br>
+
+        <input type="submit" value="Upload Ad">
+    </form>
+
+    <div id="response"></div>
+
+    <script>
+        const uploadForm = document.getElementById('uploadForm');
+        const responseDiv = document.getElementById('response');
+
+        uploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(uploadForm);
+
+            const requestOptions = {
+                method: 'POST',
+                body: formData,
+            };
+
+            try {
+                const response = await fetch("http://localhost:3000/api/ads/Create-Ads", requestOptions);
+                const data = await response.text();
+                responseDiv.textContent = data;
+            } catch (error) {
+                console.error('Error:', error);
+                responseDiv.textContent = 'Error occurred while uploading.';
+            }
+        });
+    </script>
+</body>
+</html>

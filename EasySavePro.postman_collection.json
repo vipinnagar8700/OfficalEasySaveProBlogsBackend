@@ -1,0 +1,1400 @@
+{
+	"info": {
+		"_postman_id": "68bf9378-62e4-4eb4-861d-d912ef48136d",
+		"name": "EasySavePro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "26325448",
+		"_collection_link": "https://cloudy-meteor-278729.postman.co/workspace/Team-Workspace~3cee4cd8-885c-406f-84ea-06a92b307303/collection/26325448-68bf9378-62e4-4eb4-861d-d912ef48136d?action=share&source=collection_link&creator=26325448"
+	},
+	"item": [
+		{
+			"name": "Subadmin",
+			"item": [
+				{
+					"name": "Update-password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": "http://localhost:3000/api/user/Update-password"
+					},
+					"response": []
+				},
+				{
+					"name": "reset-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\":\"vipin\",\r\n    \"lastname\":\"nagar\",\r\n    \"email\":\"vipinnagar8700@gmail.com\",\r\n    \"mobile\":\"8700503218\",\r\n    \"password\":\"12345678\",\r\n    \"role\":\"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/user/reset-password"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "adminRegister",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"firstname\": \"admin\",\r\n        \"lastname\": \"admin\",\r\n        \"email\": \"admin@gmail.com\",\r\n        \"password\":\"admin@gmail.com\",\r\n        \"mobile\": \"8700504218\",\r\n        \"address\": \"Noida\",\r\n        \"role\":\"admin\"\r\n   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/admin/adminCreate"
+					},
+					"response": []
+				},
+				{
+					"name": "adminLogin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"admin@gmail.com\"\r\n   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/admin/adminLogin"
+					},
+					"response": []
+				},
+				{
+					"name": "get-SingleAdmin",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTQ0NDU2OTcsImV4cCI6MTY5NTMwOTY5N30.qvikCPycuHISpYCMvjK0NMPtgmWQrEIVfCvKJbBRJts",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"admin@gmail.com\"\r\n   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://ads-api.easysavepro.com/api/admin/get-SingleAdmin/64fdb8642bc90603f98d3080"
+					},
+					"response": []
+				},
+				{
+					"name": "Update-SingleAdmin",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTQzNDk2NzQsImV4cCI6MTY5NDM1MzI3NH0.uT50af_T9cf_-af8yaWdl9lsPA6TDAIS20qnGmjMYkc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n   \"firstname\": \"admin\",\r\n        \"lastname\": \"admin\",\r\n       \r\n        \"mobile\": \"8700504218\",\r\n        \"address\": \"Noida\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/admin/Update-SingleAdmin/64fdb8642bc90603f98d3080"
+					},
+					"response": []
+				},
+				{
+					"name": "SubadminRegister",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\":\"Love\",\r\n    \"lastname\":\"nagar\",\r\n    \"email\":\"Love@gmail.com\",\r\n    \"mobile\":\"8705123118\",\r\n    \"password\":\"vipinnagar@gmail.com\",\r\n    \"role\":\"Subadmin\",\r\n    \"address\":\"Noida\",\r\n    \"createdBy\":\"64fdb8642bc90603f98d3080\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/subadmin/register"
+					},
+					"response": []
+				},
+				{
+					"name": "Subadminlogin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"vipinnagar52111061@gmail.com\",\r\n    \"password\":\"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/subadmin/login"
+					},
+					"response": []
+				},
+				{
+					"name": "all-Subadmin",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTQ5NDY3NzcsImV4cCI6MTY5NTgxMDc3N30.qWQE6em6Zlvn8zJ3zLh0LY70mQtyvjb-nB6I5z5umVg",
+								"type": "text"
+							}
+						],
+						"url": "https://ads-api.easysavepro.com/api/Subadmin/all-users"
+					},
+					"response": []
+				},
+				{
+					"name": "get-SingleSubadmin",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTQ0MzE1OTUsImV4cCI6MTY5NDQzNTE5NX0.zbzmr3jXE9W8saU-yjk6EK-goQa3Rs08Qz-FvQMrXZU",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:3000/api/Subadmin/get-SingleUsers/64fddfe9899c18c3e0344680"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUser",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTY5MTY0NDYsImV4cCI6MTY5Nzc4MDQ0Nn0.eWVWZWKMtcmkYN0JrzFxAbwH-qmVGj86SlMr0NriElY",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:3000/api/Subadmin/delete-SingleUsers/65256845bcc31843ab03a187"
+					},
+					"response": []
+				},
+				{
+					"name": "Update-SingleSubadmin",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTY5MTY0NDYsImV4cCI6MTY5Nzc4MDQ0Nn0.eWVWZWKMtcmkYN0JrzFxAbwH-qmVGj86SlMr0NriElY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "filee",
+									"type": "file",
+									"src": "/C:/Users/Vipin Nagar/Downloads/restoran-1.0.0/restoran-1.0.0/img/bg-hero.jpg"
+								},
+								{
+									"key": "firstname",
+									"value": "Rakesh",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "AAA",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "Rakesh@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "mobile",
+									"value": "1111111111",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Noida",
+									"type": "text"
+								}
+							]
+						},
+						"url": "http://localhost:3000/api/Subadmin/Update-SingleUsers/65256845bcc31843ab03a187"
+					},
+					"response": []
+				},
+				{
+					"name": "Blocked",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZiZmY0Yjk5YWY5ZWUwZWVjMzVhYWUiLCJpYXQiOjE2OTQ0NDU4MDEsImV4cCI6MTY5NTMwOTgwMX0.YqlENHYLg_M8ZaOjyt01sthFFk706b7vU7PPtcZRUcg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\":\"vipin\",\r\n    \"lastname\":\"nagar\",\r\n    \"email\":\"vipinnagar8700@gmail.com\",\r\n    \"mobile\":\"8700504218\"\r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/Subadmin/Blocked-SingleUsers/64fbff4b99af9ee0eec35aae"
+					},
+					"response": []
+				},
+				{
+					"name": "UnBlocked",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZiZmY0Yjk5YWY5ZWUwZWVjMzVhYWUiLCJpYXQiOjE2OTQyMzY2NDcsImV4cCI6MTY5NDI0MDI0N30.lRXuZiays5oWJ-I0Udt6AVQ2aWbwpUYn4hPEKFfbkRc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\":\"vipin\",\r\n    \"lastname\":\"nagar\",\r\n    \"email\":\"vipinnagar8700@gmail.com\",\r\n    \"mobile\":\"8700504218\"\r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/Subadmin/unblocked-SingleUsers/64fbff4b99af9ee0eec35aae"
+					},
+					"response": []
+				},
+				{
+					"name": "AllBlockedSubadmin",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZiZmY0Yjk5YWY5ZWUwZWVjMzVhYWUiLCJpYXQiOjE2OTQyMzY2NDcsImV4cCI6MTY5NDI0MDI0N30.lRXuZiays5oWJ-I0Udt6AVQ2aWbwpUYn4hPEKFfbkRc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\":\"vipin\",\r\n    \"lastname\":\"nagar\",\r\n    \"email\":\"vipinnagar8700@gmail.com\",\r\n    \"mobile\":\"8700504218\"\r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/Subadmin/all-blocked-users"
+					},
+					"response": []
+				},
+				{
+					"name": "all-unblocked-Subadmin",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZiZmY0Yjk5YWY5ZWUwZWVjMzVhYWUiLCJpYXQiOjE2OTQyMzY2NDcsImV4cCI6MTY5NDI0MDI0N30.lRXuZiays5oWJ-I0Udt6AVQ2aWbwpUYn4hPEKFfbkRc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\":\"vipin\",\r\n    \"lastname\":\"nagar\",\r\n    \"email\":\"vipinnagar8700@gmail.com\",\r\n    \"mobile\":\"8700504218\"\r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/Subadmin/all-unblocked-users"
+					},
+					"response": []
+				},
+				{
+					"name": "RefreshToken",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGYxYzUwY2EwMTkwYTVlOTI3NDkwODQiLCJpYXQiOjE2OTM2NDc2MjcsImV4cCI6MTY5MzY1MTIyN30.E37_Vl77vCdWlrKCj7geHbh7nFa77HP1wbNMTyZJnnk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\":\"vipin\",\r\n    \"lastname\":\"nagar\",\r\n    \"email\":\"vipinnagar8700@gmail.com\",\r\n    \"mobile\":\"8700504218\"\r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/user/RefreshToken"
+					},
+					"response": []
+				},
+				{
+					"name": "user-logout",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGYxYzUwY2EwMTkwYTVlOTI3NDkwODQiLCJpYXQiOjE2OTM2NDc2MjcsImV4cCI6MTY5MzY1MTIyN30.E37_Vl77vCdWlrKCj7geHbh7nFa77HP1wbNMTyZJnnk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\":\"vipin\",\r\n    \"lastname\":\"nagar\",\r\n    \"email\":\"vipinnagar8700@gmail.com\",\r\n    \"mobile\":\"8700504218\"\r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/Subadmin/user-logout"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Blogs",
+			"item": [
+				{
+					"name": "all Blogs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/blog/all-blogs"
+					},
+					"response": []
+				},
+				{
+					"name": "all blogsCategory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://ads-api.easysavepro.com/api/blog/all-blogsCategory"
+					},
+					"response": []
+				},
+				{
+					"name": "Single Blog",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTY5MTY0NDYsImV4cCI6MTY5Nzc4MDQ0Nn0.eWVWZWKMtcmkYN0JrzFxAbwH-qmVGj86SlMr0NriElY",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:3000/api/blog/get-SingleBlog/65256f9492f63aa58b913a8e"
+					},
+					"response": []
+				},
+				{
+					"name": "Single Blog Category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTY5MTY0NDYsImV4cCI6MTY5Nzc4MDQ0Nn0.eWVWZWKMtcmkYN0JrzFxAbwH-qmVGj86SlMr0NriElY",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:3000/api/blog/get-SingleBlogCategory/65256d4486c1c99192db9361"
+					},
+					"response": []
+				},
+				{
+					"name": "deleteBlog",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTY5MTY0NDYsImV4cCI6MTY5Nzc4MDQ0Nn0.eWVWZWKMtcmkYN0JrzFxAbwH-qmVGj86SlMr0NriElY",
+								"type": "text"
+							}
+						],
+						"url": "localhost:3000/api/blog/delete-SingleBlog/6524e89532372d5dea0d693d"
+					},
+					"response": []
+				},
+				{
+					"name": "deleteBlog Category",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTY5MTY0NDYsImV4cCI6MTY5Nzc4MDQ0Nn0.eWVWZWKMtcmkYN0JrzFxAbwH-qmVGj86SlMr0NriElY",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:3000/api/blog/delete-SingleBlogCategory/6512f0672f30586819ee6a7d"
+					},
+					"response": []
+				},
+				{
+					"name": "addBlogs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTY5MTY0NDYsImV4cCI6MTY5Nzc4MDQ0Nn0.eWVWZWKMtcmkYN0JrzFxAbwH-qmVGj86SlMr0NriElY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Nagar Vipijnaaaa",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "This is VIpin Naagtarara",
+									"type": "text"
+								},
+								{
+									"key": "categoryType",
+									"value": "6512f0672f30586819ee6a7d",
+									"type": "text"
+								},
+								{
+									"key": "numViews",
+									"value": "121",
+									"type": "text"
+								},
+								{
+									"key": "filee",
+									"type": "file",
+									"src": "/C:/Users/Vipin Nagar/Downloads/TaeJune15.png"
+								},
+								{
+									"key": "author",
+									"value": "64fdb8642bc90603f98d3080",
+									"type": "text"
+								}
+							]
+						},
+						"url": "http://localhost:3000/api/blog/Add-Blog"
+					},
+					"response": []
+				},
+				{
+					"name": "CategoryAdd",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTY5MTY0NDYsImV4cCI6MTY5Nzc4MDQ0Nn0.eWVWZWKMtcmkYN0JrzFxAbwH-qmVGj86SlMr0NriElY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Business News\",\r\n    \"createdBy\":\"64fdb8642bc90603f98d3080\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/blog/Add-Blog-Category"
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateBlogs",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTY5MTY0NDYsImV4cCI6MTY5Nzc4MDQ0Nn0.eWVWZWKMtcmkYN0JrzFxAbwH-qmVGj86SlMr0NriElY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "VVVVVVVVVVVVV122",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "VVVVVVVVVVVVV122",
+									"type": "text"
+								},
+								{
+									"key": "categoryType",
+									"value": "65256f9492f63aa58b913a8e",
+									"type": "text"
+								},
+								{
+									"key": "numViews",
+									"value": "1000",
+									"type": "text"
+								},
+								{
+									"key": "filee",
+									"type": "file",
+									"src": "/C:/Users/Vipin Nagar/Downloads/restoran-1.0.0/restoran-1.0.0/img/menu-6.jpg"
+								}
+							]
+						},
+						"url": "http://localhost:3000/api/blog/Update-SingleBlog/65256f9492f63aa58b913a8e"
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateBlogs Category",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTY5MTY0NDYsImV4cCI6MTY5Nzc4MDQ0Nn0.eWVWZWKMtcmkYN0JrzFxAbwH-qmVGj86SlMr0NriElY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Nagara\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/blog/Update-SingleBlogCategory/6512f0672f30586819ee6a7d"
+					},
+					"response": []
+				},
+				{
+					"name": "LikeBlogs",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"BlogId\":\"64fc52ec45feef85f5b789d9\"\r\n   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/blog/likes"
+					},
+					"response": []
+				},
+				{
+					"name": "DisLikeBlogs",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"BlogId\":\"64fc52ec45feef85f5b789d9\"\r\n   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/blog/dislikes"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Geo",
+			"item": [
+				{
+					"name": "addGeo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTQ1MzU4ODgsImV4cCI6MTY5NTM5OTg4OH0.uIqaq_u57fZVerdKMBYmPId7W45CDnqDgEN7MtYpGiU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"siteName\":\"Google\",\r\n    \"siteUrl\":\"https://www.google.com\",\r\n    \"apiKey\":\"1234567890\",\r\n    \"apiUrl\":\"https://www.google.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://ads-api.easysavepro.com/api/geo/add-geo"
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllGeoUrl",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTQ1MzU4ODgsImV4cCI6MTY5NTM5OTg4OH0.uIqaq_u57fZVerdKMBYmPId7W45CDnqDgEN7MtYpGiU",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"siteName\":\"Google\",\r\n    \"siteUrl\":\"https://www.google.com\",\r\n    \"apiKey\":\"1234567890\",\r\n    \"apiUrl\":\"https://www.google.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/geo/get-all-geo"
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllGeo",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTQ1MzU4ODgsImV4cCI6MTY5NTM5OTg4OH0.uIqaq_u57fZVerdKMBYmPId7W45CDnqDgEN7MtYpGiU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"siteName\":\"Google\",\r\n    \"siteUrl\":\"https://www.google.com\",\r\n    \"apiKey\":\"1234567890\",\r\n    \"apiUrl\":\"https://www.google.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://ads-api.easysavepro.com/api/geo/all-geo"
+					},
+					"response": []
+				},
+				{
+					"name": "GetSingleGeo",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTQ1MzU4ODgsImV4cCI6MTY5NTM5OTg4OH0.uIqaq_u57fZVerdKMBYmPId7W45CDnqDgEN7MtYpGiU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"siteName\":\"Google\",\r\n    \"siteUrl\":\"https://www.google.com\",\r\n    \"apiKey\":\"1234567890\",\r\n    \"apiUrl\":\"https://www.google.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://ads-api.easysavepro.com/api/geo/get-geo/65019f249c7df6ef52dde0d3"
+					},
+					"response": []
+				},
+				{
+					"name": "updateGeo",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTQ1MzU4ODgsImV4cCI6MTY5NTM5OTg4OH0.uIqaq_u57fZVerdKMBYmPId7W45CDnqDgEN7MtYpGiU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"siteName\":\"Google11\",\r\n    \"siteUrl\":\"https://www.google.com\",\r\n    \"apiKey\":\"1234567890\",\r\n    \"apiUrl\":\"https://www.google.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/geo/Update-geo/6500980b4ce4da54147a1d4d"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteGeo",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTQ1MzU4ODgsImV4cCI6MTY5NTM5OTg4OH0.uIqaq_u57fZVerdKMBYmPId7W45CDnqDgEN7MtYpGiU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"siteName\":\"Google\",\r\n    \"siteUrl\":\"https://www.google.com\",\r\n    \"apiKey\":\"1234567890\",\r\n    \"apiUrl\":\"https://www.google.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/geo/delete-geo/6500980b4ce4da54147a1d4d"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ads",
+			"item": [
+				{
+					"name": "CreateAds",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"content-length": true,
+							"host": true,
+							"accept": true,
+							"accept-encoding": true,
+							"user-agent": true,
+							"connection": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTQ1MzU4ODgsImV4cCI6MTY5NTM5OTg4OH0.uIqaq_u57fZVerdKMBYmPId7W45CDnqDgEN7MtYpGiU",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"AdsName\":\"UUUUU\",\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/ads/Create-Ads"
+					},
+					"response": []
+				},
+				{
+					"name": "CreateAds Copy",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"content-length": true,
+							"host": true,
+							"accept": true,
+							"accept-encoding": true,
+							"user-agent": true,
+							"connection": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTQ1MzU4ODgsImV4cCI6MTY5NTM5OTg4OH0.uIqaq_u57fZVerdKMBYmPId7W45CDnqDgEN7MtYpGiU",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "AdsName",
+									"value": "VIp",
+									"type": "text"
+								},
+								{
+									"key": "AdsLocation",
+									"value": "Greater Noida",
+									"type": "text"
+								},
+								{
+									"key": "AdsUrl",
+									"value": "http://localhost:3000/api/ads/Create-Ads",
+									"type": "text"
+								},
+								{
+									"key": "filee",
+									"type": "file",
+									"src": "/C:/Users/Vipin Nagar/Downloads/acorn react admin template/Acorn-React-Admin-Template-1.0.2/Source/acorn-react-service-provider/public/img/profile/profile-8.webp"
+								},
+								{
+									"key": "createdBy",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": "http://localhost:3000/api/ads/Create-Ads"
+					},
+					"response": []
+				},
+				{
+					"name": "AllAds",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTQ1MzU4ODgsImV4cCI6MTY5NTM5OTg4OH0.uIqaq_u57fZVerdKMBYmPId7W45CDnqDgEN7MtYpGiU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"siteName\":\"Google\",\r\n    \"siteUrl\":\"https://www.google.com\",\r\n    \"apiKey\":\"1234567890\",\r\n    \"apiUrl\":\"https://www.google.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/ads/all-Ads"
+					},
+					"response": []
+				},
+				{
+					"name": "GetSingleAds",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTQ1MzU4ODgsImV4cCI6MTY5NTM5OTg4OH0.uIqaq_u57fZVerdKMBYmPId7W45CDnqDgEN7MtYpGiU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"siteName\":\"Google\",\r\n    \"siteUrl\":\"https://www.google.com\",\r\n    \"apiKey\":\"1234567890\",\r\n    \"apiUrl\":\"https://www.google.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/ads/get-SingleAds/6512fe74a1cad17e70a3d542"
+					},
+					"response": []
+				},
+				{
+					"name": "updateAds",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTQ1MzU4ODgsImV4cCI6MTY5NTM5OTg4OH0.uIqaq_u57fZVerdKMBYmPId7W45CDnqDgEN7MtYpGiU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"AdsName\":\"GoogleMyBusinesAds12\",\r\n    \"AdsLocation\":\"Greater Noidaq\",\r\n    \"AdsImage\":\"1234567890\",\r\n    \"AdsUrl\":\"https://www.google.co11m1\",\r\n    \"createdBy\":\"64fdb8642bc90603f98d3080\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/ads/Update-Ads/6512fe74a1cad17e70a3d542"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteAds",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTQ1MzU4ODgsImV4cCI6MTY5NTM5OTg4OH0.uIqaq_u57fZVerdKMBYmPId7W45CDnqDgEN7MtYpGiU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/ads/delete/633.jpg"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "addUser",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTQ1MzU4ODgsImV4cCI6MTY5NTM5OTg4OH0.uIqaq_u57fZVerdKMBYmPId7W45CDnqDgEN7MtYpGiU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Vipin\",\r\n    \"email\":\"vipin@gmail.com\",\r\n    \"mobile\":\"1234567890\",\r\n    \"password\":\"123123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/User/add-User"
+					},
+					"response": []
+				},
+				{
+					"name": "Userlogin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTQ1MzU4ODgsImV4cCI6MTY5NTM5OTg4OH0.uIqaq_u57fZVerdKMBYmPId7W45CDnqDgEN7MtYpGiU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"vipin@gmail.com\",\r\n    \"password\":\"123123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/User/UserLogin"
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllUser",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTQ1MzU4ODgsImV4cCI6MTY5NTM5OTg4OH0.uIqaq_u57fZVerdKMBYmPId7W45CDnqDgEN7MtYpGiU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"siteName\":\"Google\",\r\n    \"siteUrl\":\"https://www.google.com\",\r\n    \"apiKey\":\"1234567890\",\r\n    \"apiUrl\":\"https://www.google.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/User/all-User"
+					},
+					"response": []
+				},
+				{
+					"name": "GetSingleUser",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTQ1MzU4ODgsImV4cCI6MTY5NTM5OTg4OH0.uIqaq_u57fZVerdKMBYmPId7W45CDnqDgEN7MtYpGiU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"siteName\":\"Google\",\r\n    \"siteUrl\":\"https://www.google.com\",\r\n    \"apiKey\":\"1234567890\",\r\n    \"apiUrl\":\"https://www.google.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/User/get-User/650131d07863b4a058fe1c0f"
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTQ1MzU4ODgsImV4cCI6MTY5NTM5OTg4OH0.uIqaq_u57fZVerdKMBYmPId7W45CDnqDgEN7MtYpGiU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"VipinNagar\",\r\n    \"email\":\"vipin@gmail.com\",\r\n    \"mobile\":\"1234567890\"\r\n   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/User/Update-User/650132287863b4a058fe1c22"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteGeo",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYjg2NDJiYzkwNjAzZjk4ZDMwODAiLCJpYXQiOjE2OTQ1MzU4ODgsImV4cCI6MTY5NTM5OTg4OH0.uIqaq_u57fZVerdKMBYmPId7W45CDnqDgEN7MtYpGiU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"siteName\":\"Google\",\r\n    \"siteUrl\":\"https://www.google.com\",\r\n    \"apiKey\":\"1234567890\",\r\n    \"apiUrl\":\"https://www.google.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/geo/delete-geo/6500980b4ce4da54147a1d4d"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

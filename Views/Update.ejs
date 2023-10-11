@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Ad</title>
+</head>
+<body>
+    <h1>Update Ad</h1>
+    <form id="updateForm" enctype="multipart/form-data">
+        <label for="AdsName">Ad Name:</label>
+        <input type="text" name="AdsName" id="AdsName" required>
+
+        <label for="AdsLocation">Ad Location:</label>
+        <input type="text" name="AdsLocation" id="AdsLocation" required>
+
+        <label for="AdsUrl">Ad URL:</label>
+        <input type="text" name="AdsUrl" id="AdsUrl" required>
+
+        <label for="filee">Upload Image:</label>
+        <input type="file" name="filee" id="filee" accept="image/*" required>
+
+        <input type="submit" value="Update Ad">
+    </form>
+
+    <script>
+        document.getElementById('updateForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const id = '6524137c2fe16c61a9d8ae60'; // Replace with the actual ad ID
+            const formData = new FormData(document.getElementById('updateForm'));
+
+            try {
+                const response = await fetch(`http://localhost:3000/api/ads/Update-Ads/${id}`, {
+                    method: 'PUT',
+                    body: formData,
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(data);
+                    alert(data.message);
+                } else {
+                    console.error('Failed to update ad and image');
+                    alert('Failed to update ad and image');
+                }
+            } catch (error) {
+                console.error('Error updating ad and image:', error);
+                alert('Error updating ad and image');
+            }
+        });
+    </script>
+</body>
+</html>

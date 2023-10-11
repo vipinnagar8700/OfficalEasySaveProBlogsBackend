@@ -5,9 +5,20 @@ const { validateMongoDbId } = require('../utils/validationmongodb');
 const Category = require('../models/CategoryModal');
 const Admin = require('../models/AdminModal');
 const mongoose = require('mongoose');
+const Minio = require('minio')
+const path = require('path')
+
+const minioClient = new Minio.Client({
+    endPoint: 's3.easysavepro.com', // Replace with your Minio server's endpoint
+    port: 443, // Replace with the port number your Minio server uses
+    useSSL: true, // Set to true if your Minio server uses SSL
+    accessKey: 'i0y1sNJWgJ1meU7Cy8BH', // Replace with your Minio server access key
+    secretKey: 'a022z4bMwafzh98bOW8SK9h46LSuiQdntlSPgATq' // Replace with your Minio server secret key
+});
+
 
 const createBlog = asyncHandler(async (req, res) => {
-    const { title, categoryType, author } = req.body;
+    const { title, categoryType, author,description,numViews } = req.body;
 
     // Check if the category with the provided categoryId exists
     const existingCategory = await Category.findById(categoryType);
@@ -17,7 +28,30 @@ const createBlog = asyncHandler(async (req, res) => {
             success: false
         });
     }
+    if (!req.file) {
+        return res.status(400).json({ message: 'No image file provided' });
+    }
+    const imageBuffer = req.file.buffer;
+    // Extract the image name from the uploaded file
+    const imageName = req.file.originalname;
+    console.log(imageName)
+    // Specify the object key as the image name
+    const objectKey = imageName;
+    console.log(objectKey)
+    let contentType = 'application/octet-stream'; // Default content type
+    const fileExtension = path.extname(imageName).toLowerCase();
+    if (fileExtension === '.jpg' || fileExtension === '.jpeg') {
+        contentType = 'image/jpeg';
+    } else if (fileExtension === '.png') {
+        contentType = 'image/png';
+    } else if (fileExtension === '.gif') {
+        contentType = 'image/gif';
+    } // Add more file types as needed
 
+    // Upload the image to MinIO and set the content type
+    await minioClient.putObject('ads-api-easysavepro', objectKey, imageBuffer, imageBuffer.length, {
+        'Content-Type': contentType,
+    });
     // Function to determine the author type (Admin or Subadmin)
     const getAuthorType = async (authorId) => {
         const admin = await Admin.findById(authorId);
@@ -45,7 +79,16 @@ const createBlog = asyncHandler(async (req, res) => {
     // Now you can proceed to create the blog
     const findBlog = await Blog.findOne({ title: title });
     if (!findBlog) {
-        const data = await Blog.create(req.body);
+        const blogData = {
+            title: title,
+            categoryType: categoryType,
+            description:description,
+            numViews:numViews,
+            author: author,
+            image: imageName, // Store the image name in the database
+        };
+
+        const data = await Blog.create(blogData);
         res.json({
             status: "Success",
             message: "Blog Successfully Created!",
@@ -140,7 +183,7 @@ const getAllBlogs = asyncHandler(async (req, res) => {
         res.status(200).json({
             message: "All Existing Blogs!",
             data,
-            length
+            length,status:"success"
         });
     } catch (error) {
         throw new Error(error);
@@ -200,6 +243,7 @@ const getSingleBlog = asyncHandler(async (req, res) => {
             res.status(200).json({
                 message: "Single Blog Data!",
                 data: blog[0],
+                status:"success"
             });
         }
     } catch (error) {
@@ -212,62 +256,125 @@ const deleteSingleBlog = asyncHandler(async (req, res) => {
     const { id } = req.params;
     validateMongoDbId(id)
     try {
-        const data = await Blog.findByIdAndDelete(id);
-        if (!data) {
-            // If data is null, that means the user was not found and not deleted.
-            res.status(200).json({
-                message: "Blog was not found !",
-            });
-        } else {
-            // If data is not null, the user was found and deleted successfully.
-            res.status(200).json({
-                message: "Blog Data successfully Deleted!",
+        // Check if the document exists in MongoDB
+        const existingAds = await Blog.findById(id);
+
+        if (!existingAds) {
+            return res.status(404).json({
+                message: "Ads not found!",
+                status:"false"
             });
         }
+
+        // Get the image object name from the existingAds document
+        const objectName = existingAds.image;
+
+        // Check if the image exists in S3 bucket
+        const s3ObjectExists = await minioClient.getObject('ads-api-easysavepro', objectName)
+            .then(() => true)
+            .catch(() => false);
+
+        if (s3ObjectExists) {
+            // Delete the image from S3 bucket
+            await minioClient.removeObject('ads-api-easysavepro', objectName);
+        } else {
+            // If the image does not exist in S3, you might want to handle this case accordingly.
+            return res.status(404).json({
+                message: "Image not found in S3 bucket!",
+                status:"false",
+            });
+        }
+
+        // Delete the document from MongoDB
+        await Blog.findByIdAndDelete(id);
+
+        res.status(200).json({
+            message: "Blog and Image successfully deleted!",
+            status:"success"
+        });
     } catch (error) {
-        // Handle any errors that occurred during the deletion process.
-        throw new Error(error);
+        console.error('Error deleting image or document:', error);
+        res.status(500).json({ error: 'Error deleting image or document' });
     }
 });
+
 
 const UpdateSingleBlog = asyncHandler(async (req, res) => {
     const { id } = req.params;
     validateMongoDbId(id);
 
     try {
-        const { title, description, category, numViews, address, image, author } = req.body;
+        const { title, description, category, numViews, address } = req.body;
 
-        // Convert the author array to ObjectId values
-        const authorIds = new mongoose.Types.ObjectId(author);
+        // Check if the blog with the given ID exists
+        const existingBlog = await Blog.findById(id);
 
-        const data = await Blog.findByIdAndUpdate(
-            id,
-            {
-                title,
-                description,
-                category,
-                numViews,
-                address,
-                image,
-                author: authorIds, // Use the array of ObjectId values
-            },
-            { new: true }
-        );
-
-        if (data === null) {
-            res.status(404).json({
+        if (!existingBlog) {
+            return res.status(404).json({
                 message: "Blog was not found!",
-            });
-        } else {
-            res.status(200).json({
-                message: "Blog Data successfully Updated!",
-                data,
+                status: "false"
             });
         }
+
+        // Check if a new image file was uploaded
+        if (req.file) {
+            const imageBuffer = req.file.buffer;
+            const bucketName = 'ads-api-easysavepro'; // Replace with your bucket name
+
+            // Set the content type based on the uploaded file's type
+            const contentType = req.file.mimetype;
+
+            // Generate a new unique image key or filename
+            const newImageKey = `image_${Date.now()}.jpg`; // Customize the key as needed
+
+            // // Check if the existing image exists in MinIO
+            // const existingImageExists = await minioClient
+            //     .getObject(bucketName, existingBlog.image)
+            //     .then(() => true)
+            //     .catch(() => false);
+
+            if (existingBlog.image) {
+                await minioClient.removeObject(bucketName, existingBlog.image);
+            }
+
+            // Upload the new image to MinIO and set the content type
+            await minioClient.putObject(bucketName, newImageKey, imageBuffer, {
+                'Content-Type': contentType,
+            });
+
+            // Update the image field in the blog data with the new image key
+            existingBlog.image = newImageKey;
+        }
+
+        // Convert the author field to ObjectId using mongoose.Types.ObjectId
+        // const authorId = mongoose.Types.ObjectId(author);
+
+        // Update the blog data
+        existingBlog.title = title || existingBlog.title;
+        existingBlog.description = description || existingBlog.description;
+        existingBlog.category = category || existingBlog.category;
+        existingBlog.numViews = numViews || existingBlog.numViews;
+        existingBlog.address = address || existingBlog.address;
+        // existingBlog.author = authorId;
+        // Save the updated blog data
+        await existingBlog.save();
+
+        res.status(200).json({
+            message: "Blog Data and Image successfully updated!",
+            data: existingBlog, // Return the updated blog data
+            status: "success"
+        });
     } catch (error) {
-        throw new Error(error);
+        // Handle any errors that occurred during the update process.
+        console.error('Error updating blog:', error);
+        res.status(500).json({
+            message: 'Error updating blog.',
+            status: "false"
+        });
     }
 });
+
+
 
 
 // const likeBlog = asyncHandler(async (req, res) => {

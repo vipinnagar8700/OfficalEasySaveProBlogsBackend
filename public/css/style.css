@@ -1,0 +1,73 @@
+body {}
+
+h1 {
+    margin-bottom: 3rem;
+}
+
+.login-form {}
+
+.login-input-container {
+    margin-top: 2rem;
+}
+
+label {
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.input-content {}
+
+label {
+  
+}
+
+input:focus~label,
+input:not(:placeholder-shown)~label {
+    margin-top: -60px;
+    font-size: 12px;
+}
+
+.input-content:focus {
+    outline: none !important;
+}
+
+.login-sub {
+   
+}
+
+.remember {
+    
+}
+
+.login-btn {
+    
+}
+
+.login-btn:active {
+    transform: scale(0.95);
+}
+
+.login-btn p {
+    
+}
+
+.sign-up {
+  
+}
+
+.sign-up b {
+    
+}
+
+#checkbox {
+   
+}
+
+#checkbox:active {
+    transform: scale(0.8);
+}
+
+#checkbox-ico {
+    color: #7f8a9b;
+    display: none;
+}

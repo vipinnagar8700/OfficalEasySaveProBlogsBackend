@@ -38,6 +38,10 @@ var SubadminSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    image:{
+        type: String,
+        default:null,
+    },
     refreshToken: {
         type: String,
     },
@@ -48,7 +52,7 @@ var SubadminSchema = new mongoose.Schema({
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Admin', // Reference the Admin model
-        required: true // Ensure this field is required
+        required: false // Ensure this field is required
     }
 },
     {
