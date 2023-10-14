@@ -63,10 +63,10 @@ const LoginAdminCtrl = asyncHandler(async (req, res) => {
                 email: findUser?.email,
                 mobile: findUser?.mobile,
                 address: findUser?.address,
-                image:findUser?.image,
+                image: findUser?.image,
                 token: token,
             },
-            status:"success"
+            status: "success"
 
         });
 
@@ -145,31 +145,32 @@ const handleRefreshToken = asyncHandler(async (req, res) => {
 
 })
 
-const LogoutAdmin = asyncHandler(async (req, res) => {
-    const cookie = req.cookies;
-    if (!cookie?.refreshToken) throw new Error("No refresh token on the cookies!");
+const LogoutAdmin = async (req, res) => {
+    try {
+        // const refreshToken = req.cookies.refreshToken;
+        // if (!refreshToken) {
+        //     return res.status(400).json({ message: "No refresh token in cookies" });
+        // }
 
-    const refreshToken = cookie.refreshToken;
-    const user = await Admin.findOne({ refreshToken });
-    if (user) {
-        res.clearCookie('refreshToken', {
-            httpOnly: true,
-            secure: true,
-        });
-        return res.status(204).json({ message: 'Logout successful' });
+        // Clear the refreshToken in the database (if necessary)
+        // You should have a corresponding field for refreshToken in your schema
+        // Example with Mongoose:
+        // await Admin.findOneAndUpdate({ refreshToken }, { refreshToken: "" });
+
+        // Clear the refreshToken cookie
+        // res.clearCookie('refreshToken', {
+        //     httpOnly: true,
+        //     secure: true,
+        // });
+
+         res.status(200).json({ message: 'Logout successful', status: 'success' });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Server error' });
     }
+};
 
-    await Admin.findOneAndUpdate(refreshToken, {
-        refreshToken: ""
-    });
 
-    res.clearCookie('refreshToken', {
-        httpOnly: true,
-        secure: true,
-    });
-
-    return res.status(204).json({ message: 'Logout successful' });
-});
 
 
 

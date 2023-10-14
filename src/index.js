@@ -54,7 +54,7 @@ app.use(express.static('public'));
 
 
 app.get('/', (req, res) => {
-    res.render('adsCreate', { title: 'Hello Mr vipin Nagar' });
+    res.render('index', { title: 'Hello Mr vipin Nagar' });
 
 })
 
