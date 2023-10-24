@@ -68,22 +68,22 @@ const CreateAds = asyncHandler(async (req, res) => {
 
     const imageBuffer = req.file.buffer;
     const imageName = req.file.originalname;
-    // const objectKey = imageName;
-    // let contentType = 'application/octet-stream';
+    const objectKey = imageName;
+    let contentType = 'application/octet-stream';
 
-    // const fileExtension = path.extname(imageName).toLowerCase();
-    // if (fileExtension === '.jpg' || fileExtension === '.jpeg') {
-    //     contentType = 'image/jpeg';
-    // } else if (fileExtension === '.png') {
-    //     contentType = 'image/png';
-    // } else if (fileExtension === '.gif') {
-    //     contentType = 'image/gif';
-    // }
+    const fileExtension = path.extname(imageName).toLowerCase();
+    if (fileExtension === '.jpg' || fileExtension === '.jpeg') {
+        contentType = 'image/jpeg';
+    } else if (fileExtension === '.png') {
+        contentType = 'image/png';
+    } else if (fileExtension === '.gif') {
+        contentType = 'image/gif';
+    }
 
     try {
-        // await minioClient.putObject('ads-api-easysavepro', objectKey, imageBuffer, imageBuffer.length, {
-        //     'Content-Type': contentType,
-        // });
+        await minioClient.putObject('ads-api-easysavepro', objectKey, imageBuffer, imageBuffer.length, {
+            'Content-Type': contentType,
+        });
 
         const adData = {
             AdsName,

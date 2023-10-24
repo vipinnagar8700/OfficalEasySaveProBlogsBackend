@@ -57,6 +57,10 @@ app.get('/', (req, res) => {
     res.render('index', { title: 'Hello Mr vipin Nagar' });
 
 })
+app.get('/A', (req, res) => {
+    res.render('adsCreate', { title: 'Hello Mr vipin Nagar' });
+
+})
 
 
 minioClient.makeBucket(bucketName, process.env.AWS_REGION, function (req, res, err) {
